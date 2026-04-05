@@ -27,9 +27,3 @@ A mobile application for alumni networking, built with React Native and Supabase
 # Platform
 
 Android
-
-## 📝 Notes
-
-- This is a college MVP project — not for production use
-- No custom backend, no Express, no JWT handling — all handled by Supabase
-- Keep logic in components or simple files for readability
