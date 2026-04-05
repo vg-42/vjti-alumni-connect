@@ -113,6 +113,7 @@ export default function DirectoryScreen() {
         <TextInput
           style={styles.searchInput}
           placeholder="🔍  Search by name, branch, or batch year..."
+          placeholderTextColor="#999"
           value={search}
           onChangeText={handleSearch}
           clearButtonMode="while-editing"
@@ -168,6 +169,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     borderWidth: 1,
     borderColor: '#ddd',
+    color: '#000',
   },
   statsBar: {
     backgroundColor: '#fff',

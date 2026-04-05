@@ -235,6 +235,7 @@ export default function JobBoardScreen() {
             <TextInput
               style={styles.input}
               placeholder="e.g. Software Engineer"
+              placeholderTextColor="#999"
               value={title}
               onChangeText={setTitle}
             />
@@ -243,6 +244,7 @@ export default function JobBoardScreen() {
             <TextInput
               style={styles.input}
               placeholder="e.g. Google, Startup Inc."
+              placeholderTextColor="#999"
               value={company}
               onChangeText={setCompany}
             />
@@ -251,6 +253,7 @@ export default function JobBoardScreen() {
             <TextInput
               style={styles.input}
               placeholder="e.g. Mumbai, Remote"
+              placeholderTextColor="#999"
               value={location}
               onChangeText={setLocation}
             />
@@ -259,6 +262,7 @@ export default function JobBoardScreen() {
             <TextInput
               style={[styles.input, styles.multiline]}
               placeholder="Job details, requirements, etc."
+              placeholderTextColor="#999"
               value={description}
               onChangeText={setDescription}
               multiline
@@ -269,7 +273,8 @@ export default function JobBoardScreen() {
             <Text style={styles.label}>Contact Email</Text>
             <TextInput
               style={styles.input}
-              placeholder="email for applications"
+              placeholder="Email for applications"
+              placeholderTextColor="#999"
               value={contactEmail}
               onChangeText={setContactEmail}
               keyboardType="email-address"
@@ -454,6 +459,7 @@ const styles = StyleSheet.create({
     padding: 12,
     fontSize: 15,
     backgroundColor: '#f9f9f9',
+    color: '#000',
   },
   multiline: {
     minHeight: 90,

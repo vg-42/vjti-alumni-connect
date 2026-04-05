@@ -63,7 +63,6 @@ export default function SignupScreen({ navigation }) {
       return;
     }
 
-    Alert.alert('Account Created!', 'Please check your email and click the verification link before logging in.');
     setLoading(false);
   }
 
@@ -88,6 +87,7 @@ export default function SignupScreen({ navigation }) {
           <TextInput
             style={styles.input}
             placeholder="Enter your full name"
+            placeholderTextColor="#999"
             value={name}
             onChangeText={setName}
             autoCapitalize="words"
@@ -97,6 +97,7 @@ export default function SignupScreen({ navigation }) {
           <TextInput
             style={styles.input}
             placeholder="Enter your email"
+            placeholderTextColor="#999"
             value={email}
             onChangeText={setEmail}
             keyboardType="email-address"
@@ -106,8 +107,9 @@ export default function SignupScreen({ navigation }) {
 
           <Text style={styles.label}>Password *</Text>
           <TextInput
-            style={styles.input}
+            style={[styles.input, { color: '#000' }]}
             placeholder="Min. 6 characters"
+            placeholderTextColor="#999"
             value={password}
             onChangeText={setPassword}
             secureTextEntry
@@ -117,6 +119,7 @@ export default function SignupScreen({ navigation }) {
           <TextInput
             style={styles.input}
             placeholder="e.g. 2025"
+            placeholderTextColor="#999"
             value={graduationYear}
             onChangeText={setGraduationYear}
             keyboardType="numeric"
@@ -126,7 +129,8 @@ export default function SignupScreen({ navigation }) {
           <Text style={styles.label}>Specialization / Branch</Text>
           <TextInput
             style={styles.input}
-            placeholder="e.g. Computer Science, MBA Finance"
+            placeholder="e.g. Electronics and Telecommunications"
+            placeholderTextColor="#999"
             value={specialization}
             onChangeText={setSpecialization}
             autoCapitalize="words"
@@ -202,6 +206,7 @@ const styles = StyleSheet.create({
     padding: 12,
     fontSize: 15,
     backgroundColor: '#f9f9f9',
+    color: '#000',
   },
   button: {
     backgroundColor: '#950606',

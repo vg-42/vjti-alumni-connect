@@ -46,21 +46,27 @@ export default function EditProfileScreen({ navigation, route }) {
     }
   }
 
-  async function uploadAvatar(uri) {
-    const response = await fetch(uri);
-    const blob = await response.blob();
-    const { data: { user } } = await supabase.auth.getUser();
-    const filePath = `avatars/${user.id}.jpg`;
+async function uploadAvatar(uri) {
+  const { data: { user } } = await supabase.auth.getUser();
+  const filePath = `avatars/${user.id}.jpg`;
+  const fileName = `${user.id}.jpg`;
 
-    const { error } = await supabase.storage
-      .from('avatars')
-      .upload(filePath, blob, { contentType: 'image/jpeg', upsert: true });
+  const formData = new FormData();
+  formData.append('file', {
+    uri: uri,
+    name: fileName,
+    type: 'image/jpeg',
+  });
 
-    if (error) throw error;
+  const { error } = await supabase.storage
+    .from('avatars')
+    .upload(filePath, formData, { contentType: 'multipart/form-data', upsert: true });
 
-    const { data: urlData } = supabase.storage.from('avatars').getPublicUrl(filePath);
-    return urlData.publicUrl + '?t=' + Date.now();
-  }
+  if (error) throw error;
+
+  const { data: urlData } = supabase.storage.from('avatars').getPublicUrl(filePath);
+  return urlData.publicUrl + '?t=' + Date.now();
+}
 
   async function handleSave() {
     if (!name.trim()) {
@@ -138,6 +144,7 @@ export default function EditProfileScreen({ navigation, route }) {
         <TextInput
           style={styles.input}
           placeholder="Your full name"
+          placeholderTextColor="#999"
           value={name}
           onChangeText={setName}
           autoCapitalize="words"
@@ -148,6 +155,7 @@ export default function EditProfileScreen({ navigation, route }) {
         <TextInput
           style={styles.input}
           placeholder="Your email address"
+          placeholderTextColor="#999"
           value={email}
           onChangeText={setEmail}
           keyboardType="email-address"
@@ -159,6 +167,7 @@ export default function EditProfileScreen({ navigation, route }) {
         <TextInput
           style={styles.input}
           placeholder="e.g. 2025"
+          placeholderTextColor="#999"
           value={graduationYear}
           onChangeText={setGraduationYear}
           keyboardType="numeric"
@@ -169,7 +178,8 @@ export default function EditProfileScreen({ navigation, route }) {
         <Text style={styles.label}>Specialization / Branch</Text>
         <TextInput
           style={styles.input}
-          placeholder="e.g. Computer Science, MBA Finance"
+          placeholder="e.g. Electronics and Telecommunications"
+          placeholderTextColor="#999"
           value={specialization}
           onChangeText={setSpecialization}
           autoCapitalize="words"
@@ -180,6 +190,7 @@ export default function EditProfileScreen({ navigation, route }) {
         <TextInput
           style={[styles.input, styles.bioInput]}
           placeholder="Tell people about yourself..."
+          placeholderTextColor="#999"
           value={bio}
           onChangeText={setBio}
           multiline
@@ -271,6 +282,7 @@ const styles = StyleSheet.create({
     padding: 12,
     fontSize: 15,
     backgroundColor: '#f9f9f9',
+    color: '#000',
   },
   bioInput: {
     minHeight: 90,

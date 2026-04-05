@@ -47,9 +47,9 @@ function MainTabs() {
           backgroundColor: '#fff',
           borderTopWidth: 1,
           borderTopColor: '#e0e0e0',
-          paddingBottom: 6,
-          paddingTop: 4,
-          height: 60,
+          paddingBottom: 12,
+          paddingTop: 8,
+          height: 75,
         },
         tabBarLabelStyle: {
           fontSize: 11,
@@ -68,12 +68,12 @@ function MainTabs() {
       <Tab.Screen
         name="Feed"
         component={FeedScreen}
-        options={{ title: 'Alumni Connect', tabBarLabel: 'Home' }}
+        options={{ title: 'VJTI Alumni Connect', tabBarLabel: 'Home' }}
       />
       <Tab.Screen
         name="Directory"
         component={DirectoryScreen}
-        options={{ title: 'Alumni Directory', tabBarLabel: 'Directory' }}
+        options={{ title: 'VJTI Alumni Directory', tabBarLabel: 'Directory' }}
       />
       <Tab.Screen
         name="Post"

@@ -38,21 +38,26 @@ export default function CreatePostScreen({ navigation }) {
     }
   }
 
-  async function uploadImage(uri) {
-    const response = await fetch(uri);
-    const blob = await response.blob();
-    const fileName = `post_${Date.now()}.jpg`;
-    const filePath = `posts/${fileName}`;
+async function uploadImage(uri) {
+  const fileName = `post_${Date.now()}.jpg`;
+  const filePath = `posts/${fileName}`;
 
-    const { error } = await supabase.storage
-      .from('posts')
-      .upload(filePath, blob, { contentType: 'image/jpeg', upsert: false });
+  const formData = new FormData();
+  formData.append('file', {
+    uri: uri,
+    name: fileName,
+    type: 'image/jpeg',
+  });
 
-    if (error) throw error;
+  const { error } = await supabase.storage
+    .from('posts')
+    .upload(filePath, formData, { contentType: 'multipart/form-data', upsert: false });
 
-    const { data: urlData } = supabase.storage.from('posts').getPublicUrl(filePath);
-    return urlData.publicUrl;
-  }
+  if (error) throw error;
+
+  const { data: urlData } = supabase.storage.from('posts').getPublicUrl(filePath);
+  return urlData.publicUrl;
+}
 
   async function handleCreatePost() {
     if (!content.trim()) {
@@ -113,6 +118,7 @@ export default function CreatePostScreen({ navigation }) {
         <TextInput
           style={styles.textInput}
           placeholder="Share something with your alumni network..."
+          placeholderTextColor="#999"
           value={content}
           onChangeText={setContent}
           multiline
@@ -180,6 +186,7 @@ const styles = StyleSheet.create({
     minHeight: 140,
     backgroundColor: '#fafafa',
     marginBottom: 16,
+    color: '#000',
   },
   imagePreviewContainer: {
     marginBottom: 16,

@@ -287,6 +287,7 @@ export default function PostCard({ post, currentUserId, onPostDeleted }) {
                 <TextInput
                   style={styles.commentInput}
                   placeholder="Write a comment..."
+                  placeholderTextColor="#999"
                   value={commentText}
                   onChangeText={setCommentText}
                   multiline
@@ -510,6 +511,7 @@ const styles = StyleSheet.create({
     fontSize: 13,
     backgroundColor: '#fafafa',
     maxHeight: 80,
+    color: '#000',
   },
   postCommentBtn: {
     backgroundColor: '#950606',
